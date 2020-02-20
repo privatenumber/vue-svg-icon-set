@@ -1,0 +1,1 @@
+# vue-svg-icon-set
