@@ -1,0 +1,11 @@
+{
+  "name": "vue-svg-icon-set",
+  "version": "1.0.0",
+  "description": "",
+  "main": "icons-layer.vue",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hiroki Osame <hiroki.osame@gmail.com>",
+  "license": "MIT"
+}
