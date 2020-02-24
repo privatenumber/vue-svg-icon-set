@@ -1,18 +1,22 @@
 <template>
-	<div>
+	<component
+		:is="el"
+		v-bind="$attrs"
+		v-on="$listeners"
+	>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			v-show="false"
 		>
-			<template v-for="(icon, id) in icons">
-				<component
-					:id="id"
-					:is="icon"
-				/>
-			</template>
+			<render-vnode
+				v-for="(vnode, id) in icons"
+				:key="id"
+				:vnode="vnode"
+				:id="id"
+			/>
 		</svg>
 		<slot />
-	</div>
+	</component>
 </template>
 
 <script>
@@ -21,7 +25,21 @@ import svgLayer from './key';
 export default {
 	name: 'icons-layer',
 
+	inheritAttrs: false,
+
+	components: {
+		RenderVnode: {
+			render() {
+				return this.$attrs.vnode;
+			},
+		},
+	},
+
 	props: {
+		el: {
+			type: null,
+			default: 'div',
+		},
 		namespace: {
 			type: String,
 			default: 'icon-',
@@ -37,7 +55,7 @@ export default {
 					vm.$set(
 						vm.icons,
 						registeredId,
-						{ render: () => vnode },
+						vnode,
 					);
 					return registeredId;
 				},

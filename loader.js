@@ -1,17 +1,37 @@
-const iconRegisterPath = require.resolve('./icon-register');
+const loaderUtils = require('loader-utils');
+const path = require('path');
+const kebabCase = require('lodash/kebabCase');
+const IconRegister = require.resolve('./icon-register');
 
-module.exports = (svgStr) => {
-	const id = 'hello-world';
+function generateId(resourcePath) {
+	const [resourceName] = path.basename(resourcePath).split('.');
+	return kebabCase(resourceName);
+}
 
-	// TODO: generate ID from file name, overrideable via WP options
+module.exports = function (svgStr) {
+	const options = loaderUtils.getOptions(this) || {};
+	const { resourcePath } = this;
+	const id = (options.generateId || generateId)(resourcePath);
+	const { svgComponentPath } = options;
+
 	// TODO: transpile svg to symbol
 	// TODO: replace color with currentColor
+	// TODO: assert that svgStr is a symbol tag
+
+	const components = { IconRegister };
+	if (svgComponentPath) {
+		components.SvgComp = svgComponentPath;
+	}
+
+	const imprtStmts = Object.entries(components)
+		.map(([name, path]) => `import ${name} from '${path}';`)
+		.join('');
 
 	return `
-<template><icon-register id="${id}">${svgStr}</icon-register></template>
+<template><icon-register id="${id}" :el="$options.components.SvgComp">${svgStr}</icon-register></template>
 <script>
-import IconRegister from '${iconRegisterPath}';
-export default { components: { IconRegister } };
+${imprtStmts}
+export default { components: { ${Object.keys(components)} } };
 </script>
 `;
 };
