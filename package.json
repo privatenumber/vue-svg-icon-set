@@ -9,7 +9,7 @@
   "author": "Hiroki Osame <hiroki.osame@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "loader-utils": "^1.4.0",
+    "loader-utils": "^2.0.0",
     "lodash": "^4.17.15"
   }
 }
