@@ -3,20 +3,21 @@ const path = require('path');
 const kebabCase = require('lodash/kebabCase');
 const IconRegister = require.resolve('./icon-register');
 
-function generateId(resourcePath) {
-	const [resourceName] = path.basename(resourcePath).split('.');
-	return kebabCase(resourceName);
-}
+const utils = {
+	kebabBaseName(resourcePath) {
+		const [resourceBaseName] = path.basename(resourcePath).split('.');
+		return kebabCase(resourceBaseName);
+	},
+};
 
 module.exports = function (svgStr) {
 	const options = loaderUtils.getOptions(this) || {};
-	const { resourcePath } = this;
-	const id = (options.generateId || generateId)(resourcePath);
-	const { svgComponentPath } = options;
+	const id = (options.generateId || utils.kebabBaseName).call(utils, this.resourcePath);
 
 	// TODO: transpile svg to symbol
 	// TODO: replace color with currentColor
 	// TODO: assert that svgStr is a symbol tag
+	const { svgComponentPath } = options;
 
 	const components = { IconRegister };
 	if (svgComponentPath) {
