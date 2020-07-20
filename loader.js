@@ -28,6 +28,8 @@ module.exports = function (svgStr) {
 		.map(([name, path]) => `import ${name} from '${path}';`)
 		.join('');
 
+// Can this be a functional component?
+
 	return `
 <template><icon-register id="${id}" :el="$options.components.SvgComp">${svgStr}</icon-register></template>
 <script>

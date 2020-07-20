@@ -47,11 +47,12 @@ export default {
 	},
 
 	provide() {
-		const vm = this;
+		// move this to methods
+		var vm = this;
 		return {
 			[svgLayer]: {
 				register(id, vnode) {
-					const registeredId = vm.namespace + id;
+					var registeredId = vm.namespace + id;
 					vm.$set(
 						vm.icons,
 						registeredId,
@@ -68,5 +69,7 @@ export default {
 			icons: {},
 		};
 	},
+
+
 };
 </script>
