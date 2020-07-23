@@ -9,6 +9,7 @@
   "author": "Hiroki Osame <hiroki.osame@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "loader-utils": "^2.0.0",
     "lodash": "^4.17.19"
   }

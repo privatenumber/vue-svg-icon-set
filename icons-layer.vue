@@ -22,17 +22,21 @@
 <script>
 import svgLayer from './key';
 
+const RenderVnode = {
+	// inherits id attribute
+	props: ['vnode'],
+	render() {
+		return this.vnode;
+	},
+};
+
 export default {
 	name: 'icons-layer',
 
 	inheritAttrs: false,
 
 	components: {
-		RenderVnode: {
-			render() {
-				return this.$attrs.vnode;
-			},
-		},
+		RenderVnode,
 	},
 
 	props: {
@@ -47,19 +51,9 @@ export default {
 	},
 
 	provide() {
-		// move this to methods
-		var vm = this;
 		return {
 			[svgLayer]: {
-				register(id, vnode) {
-					var registeredId = vm.namespace + id;
-					vm.$set(
-						vm.icons,
-						registeredId,
-						vnode,
-					);
-					return registeredId;
-				},
+				register: this.register,
 			},
 		};
 	},
@@ -70,6 +64,16 @@ export default {
 		};
 	},
 
-
+	methods: {
+		register(id, vnode) {
+			var registeredId = this.namespace + id;
+			this.$set(
+				this.icons,
+				registeredId,
+				vnode,
+			);
+			return registeredId;
+		},
+	},
 };
 </script>
