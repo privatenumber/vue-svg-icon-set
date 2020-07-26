@@ -56,6 +56,7 @@ module.exports = function (svgStr) {
 		:el="$options.components.SvgComp"
 		${width ? `width="${width}"` : ''}
 		${height ? `height="${height}"` : ''}
+		v-on="$listeners"
 	>${svgStr}</icon-register>
 </template>
 
