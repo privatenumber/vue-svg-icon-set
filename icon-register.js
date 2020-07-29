@@ -22,7 +22,7 @@ export default {
 		var id = ctx.injections.svgLayer.register(ctx.props.id, ctx.children[0]);
 		return h(ctx.props.el, ctx.data, [
 			h('use', {
-				attrs: { 'xlink:href': `#${id}` },
+				attrs: { href: `#${id}` },
 			})
 		]);
 	},
