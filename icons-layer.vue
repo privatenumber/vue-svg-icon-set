@@ -4,16 +4,15 @@
 		v-bind="$attrs"
 		v-on="$listeners"
 	>
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			v-show="false"
-		>
-			<render-vnode
-				v-for="(vnode, id) in icons"
-				:key="id"
-				:vnode="vnode"
-				:id="id"
-			/>
+		<svg v-show="false">
+			<defs>
+				<render-vnode
+					v-for="(vnode, id) in icons"
+					:key="id"
+					:vnode="vnode"
+					:id="id"
+				/>
+			</defs>
 		</svg>
 		<slot />
 	</component>
