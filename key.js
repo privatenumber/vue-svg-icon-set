@@ -1,1 +1,3 @@
-export default 'vue-svg-icon-set-key';
+const key = 'vue-svg-icon-set-key';
+
+export default key;

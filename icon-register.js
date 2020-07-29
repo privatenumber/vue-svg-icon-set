@@ -1,29 +1,30 @@
 import svgLayer from './key';
 
-export default {
+const IconRegister = {
 	functional: true,
 	props: {
 		id: {
 			type: String,
-			required: true,
+			required: true
 		},
 
 		// To support custom SVG components
 		el: {
 			type: null,
-			default: 'svg',
-		},
+			default: 'svg'
+		}
 	},
 	inject: {
-		svgLayer,
+		svgLayer
 	},
 	render(h, ctx) {
-		// TODO: Does registering this here have negative SSR implications?
-		var id = ctx.injections.svgLayer.register(ctx.props.id, ctx.children[0]);
+		const id = ctx.injections.svgLayer.register(ctx.props.id, ctx.children[0]);
 		return h(ctx.props.el, ctx.data, [
 			h('use', {
-				attrs: { href: `#${id}` },
+				attrs: {href: `#${id}`}
 			})
 		]);
-	},
+	}
 };
+
+export default IconRegister;

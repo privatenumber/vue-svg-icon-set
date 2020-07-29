@@ -5,35 +5,39 @@ const cheerio = require('cheerio');
 const IconRegister = require.resolve('./icon-register');
 
 function getDimensions($svg) {
-	const width = parseInt($svg.attr('width'), 10);
-	const height = parseInt($svg.attr('height'), 10);
+	const width = Number.parseInt($svg.attr('width'), 10);
+	const height = Number.parseInt($svg.attr('height'), 10);
 
 	if (Number.isNaN(width) || Number.isNaN(height)) {
 		return null;
 	}
-	return { width, height };
+
+	return {width, height};
 }
 
 function getViewbox($svg) {
 	const viewBox = $svg.attr('viewBox');
-	if (!viewBox) { return {}; }
+	if (!viewBox) {
+		return {};
+	}
+
 	const [width, height] = viewBox.split(' ').slice(2);
-	return { width, height };
+	return {width, height};
 }
 
 const utils = {
 	kebabBaseName(resourcePath) {
 		const [resourceBaseName] = path.basename(resourcePath).split('.');
 		return kebabCase(resourceBaseName);
-	},
+	}
 };
 
-module.exports = function (svgStr) {
+module.exports = function (svgString) {
 	const options = loaderUtils.getOptions(this) || {};
 	const id = (options.generateId || utils.kebabBaseName).call(utils, this.resourcePath);
-	const { svgComponentPath } = options;
+	const {svgComponentPath} = options;
 
-	const components = { IconRegister };
+	const components = {IconRegister};
 	if (svgComponentPath) {
 		components.SvgComp = svgComponentPath;
 	}
@@ -42,12 +46,10 @@ module.exports = function (svgStr) {
 		.map(([name, path]) => `import ${name} from '${path}';`)
 		.join('');
 
-
-	// TODO maybe it can just inherit the viewbox, width, height attrs?
-	const $ = cheerio.load(svgStr, { xmlMode: true });
+	const $ = cheerio.load(svgString, {xmlMode: true});
 	const $svg = $('svg');
 
-	const { width = '', height = '' } = getDimensions($svg) || getViewbox($svg);
+	const {width = '', height = ''} = getDimensions($svg) || getViewbox($svg);
 
 	return `
 <template>
@@ -57,7 +59,7 @@ module.exports = function (svgStr) {
 		${width ? `width="${width}"` : ''}
 		${height ? `height="${height}"` : ''}
 		v-on="$listeners"
-	>${svgStr}</icon-register>
+	>${svgString}</icon-register>
 </template>
 
 <script>
