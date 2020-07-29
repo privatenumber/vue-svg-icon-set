@@ -19,10 +19,16 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/privatenumber/vue-svg-icon-set.git"
-  },  
+  },
+  "scripts": {
+    "lint": "xo"
+  },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "loader-utils": "^2.0.0",
     "lodash": "^4.17.19"
+  },
+  "devDependencies": {
+    "xo": "^0.32.1"
   }
 }
