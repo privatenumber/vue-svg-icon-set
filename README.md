@@ -13,69 +13,75 @@ npm i -D vue-svg-icon-set
 ```
 
 ## 🚦 Quick setup
-1. **Update Webpack config** Add the following changes to your Webpack configuration so that `vue-svg-icon-set` can transform your SVGs and so that you can output an IconLayer.
+1. **Update Webpack config**
 
-```diff
-module.exports = {
-     ...,
+    Add the following changes to your Webpack configuration so that `vue-svg-icon-set` can transform your SVGs and so that you can output an IconLayer.
 
-     entry: {
-+        'lib/icon-layer': 'vue-svg-icon-set/icon-layer.vue',
+    ```diff
+    module.exports = {
+         ...,
 
-         ...iconPaths,
-     },
+         entry: {
+    +        'lib/icon-layer': 'vue-svg-icon-set/icon-layer.vue',
 
-     module: {
-         rules: [
-             {
-                 test: /\.vue$/,
-                 loader: 'vue-loader',
-             },
-+            {
-+                test: /\.svg$/,
-+                use: [
-+                    'vue-loader',
-+                    'vue-svg-icon-set/loader',
-+                ],
-+            },
-         ],
-     }
-};
-```
+             ...iconPaths,
+         },
 
-2. **Use IconLayer** Add the outputted `icon-layer` file to your application as a top-level wrapper.
+         module: {
+             rules: [
+                 {
+                     test: /\.vue$/,
+                     loader: 'vue-loader',
+                 },
+    +            {
+    +                test: /\.svg$/,
+    +                use: [
+    +                    'vue-loader',
+    +                    'vue-svg-icon-set/loader',
+    +                ],
+    +            },
+             ],
+         }
+    };
+    ```
 
-```diff
-<template>
-+    <icon-layer>
-         <app />
-+    </icon-layer>
-</template>
-<script>
-+ import IconLayer from 'icon-library/lib/icon-layer';
+2. **Use IconLayer**
 
-export default {
-     components: {
-+        IconLayer
-     }
-}
-</script>
-```
+    Add the outputted `icon-layer` file to your application as a top-level wrapper.
 
-3. **Use Icons** That's it! You should be ready to start using the icons from your library. 👍
+    ```diff
+    <template>
+    +    <icon-layer>
+             <app />
+    +    </icon-layer>
+    </template>
+    <script>
+    + import IconLayer from 'icon-library/lib/icon-layer';
 
-```vue
-<template>
-	<thumbsup-icon />
-</template>
+    export default {
+         components: {
+    +        IconLayer
+         }
+    }
+    </script>
+    ```
 
-<script>
-import ThumbsupIcon from 'icon-library/icons/thumbsup-icon';
+3. **Use Icons**
 
-export default {
-	components: {
-		ThumbsupIcon
-	}
-};
-</script>
-```
+    That's it! You should be ready to start using the icons from your library. 👍
+
+    ```vue
+    <template>
+        <thumbsup-icon />
+    </template>
+
+    <script>
+    import ThumbsupIcon from 'icon-library/icons/thumbsup-icon';
+
+    export default {
+        components: {
+            ThumbsupIcon
+        }
+    };
+    </script>
+    ```
