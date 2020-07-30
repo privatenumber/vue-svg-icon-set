@@ -118,23 +118,14 @@ module.exports = {
 I recommend using SVGO to optimize your SVGs. Use [svgo-loader](https://github.com/rpominov/svgo-loader) to pipe optimized SVGs to `vue-svg-icon-set`.
 
 ```diff
-module.exports = {
-     ...,
-
-     module: {
-         rules: [
-             ...,
-             {
-                 test: /\.svg$/,
-                 use: [
-                     'vue-loader',
-                     'vue-svg-icon-set/loader',
-+                    'svgo-loader',
-                 ],
-             },
-         ],
-     },
-};
+{
+     test: /\.svg$/,
+     use: [
+         'vue-loader',
+         'vue-svg-icon-set/loader',
++        'svgo-loader',
+     ],
+}
 ```
 
 ## 💁‍♂️ FAQ
