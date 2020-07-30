@@ -3,7 +3,7 @@
 `vue-svg-icon-set` offers the tools necessary to create an optimized SVG icon set for Vue
 
 ## :raising_hand: Why?
-- ✨ **Optimized SVG usage** Prevent SVGs from being inlined multiple times from your icon-set
+- ⚡️ **Optimized SVG usage** Prevent SVGs from being inlined multiple times from your icon-set
 - 🔥 **Webpack integration** Seamlessly integrate with your Webpack build
 - 🦋 **Light** `1.27 kB gzip` for the IconLayer and `743 B` for IconRegister
 
@@ -85,8 +85,29 @@ npm i -D vue-svg-icon-set
     ```
     
 ## ⚙️ Options
-- `generateId` `<Function>`
+- `generateId(resourcePath)`
+    Method to generate each icon id. By default, it uses the [kebab-case](https://lodash.com/docs/4.17.15#kebabCase) of the [`basename`](https://nodejs.org/api/path.html#path_path_basename_path_ext) of the file path. You can access this method via `this.kebabBaseName()` in the `generateId` function.
 
+   Since SVGs use `id`s for referencing, this method can be used to namespace the ids to minimize the possibility of collision.
+
+```diff
+{
+     test: /\.svg$/,
+     use: [
+         'vue-loader',
+-        'vue-svg-icon-set/loader',
++        {
++            loader: 'vue-svg-icon-set/loader',
++            options: {
++                generateId(resourcePath) {
++                    const id = this.kebabBaseName(resourcePath);
++                    return `namespace-${id}`;
++                }
++            }
++        }
+     ],
+}
+```
 
 ## 🏎 Optimizations
 
