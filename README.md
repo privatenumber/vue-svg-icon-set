@@ -83,3 +83,25 @@ npm i -D vue-svg-icon-set
     };
     </script>
     ```
+
+## Optimizations
+
+### Externalizing icon register
+
+
+### SVGO
+I recommend optimizing your SVGs with SVGO
+
+    
+## 💁‍♂️ FAQ
+
+### What's the IconLayer for?
+
+### Does it work with SSR?
+
+
+
+
+
+## 👪 Related
+- vue-feather-icon-set
