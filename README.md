@@ -83,16 +83,60 @@ npm i -D vue-svg-icon-set
     };
     </script>
     ```
+    
+## ⚙️ Options
 
-## Optimizations
+## 🏎 Optimizations
 
 ### Externalizing icon register
+The `icon-register.js` component is used by every icon and can be abstracted out to reduce the size of each icon.
 
+```diff
+module.exports = {
+     ...,
+
+     entry: {
+         'lib/icon-layer': 'vue-svg-icon-set/icon-layer.vue',
++        'lib/icon-register': 'vue-svg-icon-set/icon-register',
+
+         ...iconPaths,
+     },
+     
++    externals: [
++        (from, req, cb) => {
++            if (req.endsWith('icon-register.js')) {
++                return cb(null, '../lib/icon-register.js');
++            }
++            cb();
++        },
++    ],
+
+};
+```
 
 ### SVGO
-I recommend optimizing your SVGs with SVGO
+I recommend using SVGO to optimize your SVGs. Use [svgo-loader](https://github.com/rpominov/svgo-loader) to pipe optimized SVGs to `vue-svg-icon-set`.
 
-    
+```diff
+module.exports = {
+     ...,
+
+     module: {
+         rules: [
+             ...,
+             {
+                 test: /\.svg$/,
+                 use: [
+                     'vue-loader',
+                     'vue-svg-icon-set/loader',
++                    'svgo-loader',
+                 ],
+             },
+         ],
+     },
+};
+```
+
 ## 💁‍♂️ FAQ
 
 ### How is this optimized?
