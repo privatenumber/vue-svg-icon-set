@@ -29,10 +29,8 @@ npm i -D vue-svg-icon-set
 
          module: {
              rules: [
-                 {
-                     test: /\.vue$/,
-                     loader: 'vue-loader',
-                 },
+                 ...,
+
     +            {
     +                test: /\.svg$/,
     +                use: [
