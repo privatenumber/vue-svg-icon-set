@@ -9,7 +9,7 @@
     "webpack",
     "efficient"
   ],
-  "main": "icons-layer.vue",
+  "main": "icon-layer.vue",
   "author": "Hiroki Osame <hiroki.osame@gmail.com>",
   "license": "MIT",
   "bugs": {

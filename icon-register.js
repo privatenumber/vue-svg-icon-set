@@ -15,7 +15,12 @@ const IconRegister = {
 		}
 	},
 	inject: {
-		svgLayer
+		svgLayer: {
+			from: svgLayer,
+			default: () => {
+				throw new Error('IconLayer not found. Make sure the App is wrapped with the IconLayer');
+			},
+		},
 	},
 	render(h, ctx) {
 		const { svgLayer } = ctx.injections;

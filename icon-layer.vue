@@ -30,7 +30,7 @@ const RenderVnode = {
 };
 
 export default {
-	name: 'icons-layer',
+	name: 'icon-layer',
 
 	inheritAttrs: false,
 
