@@ -3,9 +3,9 @@
 `vue-svg-icon-set` offers the tools necessary to create an optimized SVG icon set for Vue
 
 ## :raising_hand: Why?
-- Optimized SVG usage Prevent SVGs from being inlined multiple times from your icon-set
-- Webpack plugin
-- Light 
+- ✨ **Optimized SVG usage** Prevent SVGs from being inlined multiple times from your icon-set
+- 🔥 **Webpack integration** Seamlessly integrate with your Webpack build
+- 🦋 **Light** `1.27 kB gzip` for the IconLayer and `743 B` for IconRegister
 
 ## :rocket: Install
 ```sh
@@ -85,6 +85,8 @@ npm i -D vue-svg-icon-set
     ```
     
 ## ⚙️ Options
+- `generateId` `<Function>`
+
 
 ## 🏎 Optimizations
 
