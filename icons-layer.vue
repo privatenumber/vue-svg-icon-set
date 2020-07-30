@@ -53,6 +53,7 @@ export default {
 		return {
 			[svgLayer]: {
 				register: this.register,
+				unregister: this.unregister,
 			},
 		};
 	},
@@ -72,6 +73,10 @@ export default {
 				vnode,
 			);
 			return registeredId;
+		},
+
+		unregister(id) {
+			this.icons[id] = null;
 		},
 	},
 };

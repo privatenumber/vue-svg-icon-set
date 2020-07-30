@@ -18,7 +18,11 @@ const IconRegister = {
 		svgLayer
 	},
 	render(h, ctx) {
-		const id = ctx.injections.svgLayer.register(ctx.props.id, ctx.children[0]);
+		const { svgLayer } = ctx.injections;
+		const id = svgLayer.register(ctx.props.id, ctx.children[0]);
+
+		ctx.parent.$once('hook:destroyed', () => svgLayer.unregister(id));
+
 		return h(ctx.props.el, ctx.data, [
 			h('use', {
 				attrs: {href: `#${id}`}
