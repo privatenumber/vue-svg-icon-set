@@ -194,4 +194,5 @@ Yes! However, the SVG will not be inlined in the server-rendered document. It's 
 
 
 ## 👪 Related
-- vue-feather-icon-set
+- [vue-feather-icon-set](https://github.com/privatenumber/vue-feather-icon-set) - 
+Optimized [Feather](https://feathericons.com) icon set for Vue using SVG references
