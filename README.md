@@ -85,7 +85,22 @@ npm i -D vue-svg-icon-set
     ```
     
 ## ⚙️ Options
-- `generateId(resourcePath)`
+- `svgComponentPath` `<String>`
+    The path to a custom component to use as the [root of the icon component](https://github.com/privatenumber/vue-svg-icon-set/blob/master/icon-register.js#L12). This custom component should return a `<svg>` root element and can be used to add advanced behavior to the icon. For example, this custom component makes all icons appear clickable:
+    
+```vue
+<template>
+    <svg class="icon"><slot /></svg>
+</template>
+
+<style scoped>
+.icon {
+    cursor: pointer;
+}
+</style>
+```
+    
+- `generateId(resourcePath)` `<Function>`
     Method to generate each icon id. By default, it uses the [kebab-case](https://lodash.com/docs/4.17.15#kebabCase) of the [`basename`](https://nodejs.org/api/path.html#path_path_basename_path_ext) of the file path. You can access this method via `this.kebabBaseName()` in the `generateId` function.
 
    Since SVGs use `id`s for referencing, this method can be used to namespace the ids to minimize the possibility of collision.
