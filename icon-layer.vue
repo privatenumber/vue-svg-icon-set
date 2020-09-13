@@ -61,12 +61,19 @@ export default {
 	data() {
 		return {
 			icons: {},
+            pendingRemovals: {},
 		};
 	},
 
 	methods: {
 		register(id, vnode) {
 			var registeredId = this.namespace + id;
+
+			if (this.pendingRemovals[registeredId]) {
+				clearTimeout(this.pendingRemovals[registeredId]);
+				this.pendingRemovals[registeredId] = null;
+			}
+
 			this.$set(
 				this.icons,
 				registeredId,
@@ -76,7 +83,16 @@ export default {
 		},
 
 		unregister(id) {
-			this.icons[id] = null;
+			const timeoutId = setTimeout(() => {
+				this.icons[id] = null;
+				this.pendingRemovals[id] = null;
+			}, 1000);
+
+			if (this.pendingRemovals[id]) {
+				clearTimeout(this.pendingRemovals[id]);
+			}
+
+			this.$set(this.pendingRemovals, id, timeoutId);
 		},
 	},
 };
