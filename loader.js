@@ -1,3 +1,4 @@
+const assert = require('assert');
 const loaderUtils = require('loader-utils');
 const path = require('path');
 const kebabCase = require('lodash/kebabCase');
@@ -32,9 +33,20 @@ const utils = {
 	}
 };
 
+const idTracker = {};
+
 module.exports = function (svgString) {
 	const options = loaderUtils.getOptions(this) || {};
 	const id = (options.generateId || utils.kebabBaseName).call(utils, this.resourcePath);
+
+	assert(typeof id === 'string' && id, `There was no string ID generated for file "${this.resourcePath}"`);
+
+	if (idTracker[id]) {
+		assert(idTracker[id] === this.resourcePath, `ID collision detected between "${this.resourcePath}" and "${idTracker[id]}"`);
+	} else {
+		idTracker[id] = this.resourcePath;
+	}
+
 	const {svgComponentPath} = options;
 
 	const components = {IconRegister};
