@@ -70,13 +70,14 @@ module.exports = function (svgString) {
 		:el="$options.components.SvgComp"
 		${width ? `width="${width}"` : ''}
 		${height ? `height="${height}"` : ''}
+		v-bind="$attrs"
 		v-on="$listeners"
 	>${svgString}</icon-register>
 </template>
 
 <script>
 ${imprtStmts}
-export default { components: { ${Object.keys(components)} } };
+export default { inheritAttrs: false, components: { ${Object.keys(components)} } };
 </script>
 `;
 };
