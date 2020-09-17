@@ -212,7 +212,10 @@ The IconLayer is a component that declares the SVG definitions so they're refere
 ### Does this work with SSR?
 Yes! However, the SVG will not be inlined in the server-rendered document. It's actually a technical limitation because each icon usages hoists up the SVG rendering to happen in the parent _IconLayer_, and SSR only renders once. This could work to an advantage as it keeps the server-rendered doc from including SVGs that may be large or repeated. [Here's a working demo](https://github.com/privatenumber/vue-svg-icon-set-ssr-demo).
 
+### Is it possible to opt-out of the optimization for certain situations?
+Yes! Pass in the `inline` boolean prop on the icon component and it will render the SVG inline.
 
+When rendering a lot of icons, it could be noticeably faster to render the icons inline. Try it when you see a performance bottleneck in icon rendering.
 
 ## 👪 Related
 - [vue-feather-icon-set](https://github.com/privatenumber/vue-feather-icon-set) - 
