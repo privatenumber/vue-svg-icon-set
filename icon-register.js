@@ -12,23 +12,32 @@ const IconRegister = {
 		el: {
 			type: null,
 			default: 'svg'
-		}
+		},
+
+		inline: Boolean
 	},
 	inject: {
 		svgLayer: {
 			from: svgLayer,
 			default: () => {
 				throw new Error('IconLayer not found. Make sure the App is wrapped with the IconLayer');
-			},
-		},
+			}
+		}
 	},
 	render(h, ctx) {
-		const { svgLayer } = ctx.injections;
-		const id = svgLayer.register(ctx.props.id, ctx.children[0]);
+		const {svgLayer} = ctx.injections;
+		const [child] = ctx.children;
+		const {props} = ctx;
+
+		if (props.inline) {
+			return child;
+		}
+
+		const id = svgLayer.register(props.id, child);
 
 		ctx.parent.$once('hook:destroyed', () => svgLayer.unregister(id));
 
-		return h(ctx.props.el, ctx.data, [
+		return h(props.el, ctx.data, [
 			h('use', {
 				attrs: {href: `#${id}`}
 			})
