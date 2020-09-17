@@ -1,6 +1,6 @@
 {
   "name": "vue-svg-icon-set",
-  "version": "0.0.1",
+  "version": "0.0.0-semantic-release",
   "description": "Create an optimized Vue SVG icon set",
   "keywords": [
     "vue",
