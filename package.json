@@ -33,11 +33,11 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "loader-utils": "^2.0.0",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.20"
   },
   "devDependencies": {
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.11",
-    "xo": "^0.32.1"
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "xo": "^0.33.1"
   }
 }
