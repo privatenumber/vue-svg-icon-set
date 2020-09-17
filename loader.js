@@ -30,7 +30,7 @@ const utils = {
 	kebabBaseName(resourcePath) {
 		const [resourceBaseName] = path.basename(resourcePath).split('.');
 		return kebabCase(resourceBaseName);
-	}
+	},
 };
 
 const idTracker = {};

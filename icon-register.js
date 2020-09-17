@@ -5,24 +5,24 @@ const IconRegister = {
 	props: {
 		id: {
 			type: String,
-			required: true
+			required: true,
 		},
 
 		// To support custom SVG components
 		el: {
 			type: null,
-			default: 'svg'
+			default: 'svg',
 		},
 
-		inline: Boolean
+		inline: Boolean,
 	},
 	inject: {
 		svgLayer: {
 			from: svgLayer,
 			default: () => {
 				throw new Error('IconLayer not found. Make sure the App is wrapped with the IconLayer');
-			}
-		}
+			},
+		},
 	},
 	render(h, ctx) {
 		const {svgLayer} = ctx.injections;
@@ -39,10 +39,10 @@ const IconRegister = {
 
 		return h(props.el, ctx.data, [
 			h('use', {
-				attrs: {href: `#${id}`}
-			})
+				attrs: {href: `#${id}`},
+			}),
 		]);
-	}
+	},
 };
 
 export default IconRegister;

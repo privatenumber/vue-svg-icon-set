@@ -9,20 +9,18 @@
     "webpack",
     "efficient"
   ],
+  "files": [
+    "loader.js",
+    "icon-layer.vue",
+    "icon-register.js",
+    "key.js"
+  ],
   "main": "icon-layer.vue",
   "author": "Hiroki Osame <hiroki.osame@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/privatenumber/vue-svg-icon-set/issues"
-  },
-  "homepage": "https://github.com/privatenumber/vue-svg-icon-set#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/privatenumber/vue-svg-icon-set.git"
-  },
+  "repository": "privatenumber/vue-svg-icon-set",
   "scripts": {
-    "lint": "xo",
-    "version": "standard-version --preset angular"
+    "lint": "xo"
   },
   "husky": {
     "hooks": {
@@ -40,7 +38,6 @@
   "devDependencies": {
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "standard-version": "^8.0.2",
     "xo": "^0.32.1"
   }
 }
