@@ -19,9 +19,7 @@ const IconRegister = {
 	inject: {
 		svgLayer: {
 			from: svgLayer,
-			default: () => {
-				throw new Error('IconLayer not found. Make sure the App is wrapped with the IconLayer');
-			},
+			default: undefined,
 		},
 	},
 	render(h, ctx) {
@@ -31,6 +29,10 @@ const IconRegister = {
 
 		if (props.inline) {
 			return child;
+		}
+
+		if (!svgLayer) {
+			throw new Error('IconLayer not found. Make sure the App is wrapped with the IconLayer');
 		}
 
 		const id = svgLayer.register(props.id, child);
