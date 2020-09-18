@@ -70,7 +70,7 @@ npm i -D vue-svg-icon-set
 
     ```vue
     <template>
-        <thumbsup-icon />
+        <thumbsup-icon style="fill:orange" />
     </template>
 
     <script>
