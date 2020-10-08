@@ -25,9 +25,20 @@ const IconRegister = {
 	render(h, ctx) {
 		const {svgLayer} = ctx.injections;
 		const [child] = ctx.children;
-		const {props} = ctx;
+		const {props, data} = ctx;
 
 		if (props.inline) {
+			if (data) {
+				for (const key in data) { // eslint-disable-line guard-for-in
+					const value = data[key];
+					if (value && typeof value === 'object') {
+						child.data[key] = Object.assign(child.data[key] || {}, value);
+					} else {
+						child.data[key] = value;
+					}
+				}
+			}
+
 			return child;
 		}
 
@@ -39,7 +50,7 @@ const IconRegister = {
 
 		ctx.parent.$once('hook:destroyed', () => svgLayer.unregister(id));
 
-		return h(props.el, ctx.data, [
+		return h(props.el, data, [
 			h('use', {
 				attrs: {href: `#${id}`},
 			}),
